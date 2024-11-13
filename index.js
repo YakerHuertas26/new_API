@@ -1,12 +1,19 @@
-import express from "express";
+import express from 'express';
+import router from './routes/rutas.js';
 
-// creo mi servidor de express
-const newApp= express();
+// creo el servidor app
+const app= express();
 
-// defino el puerto
+
+// puerto
 const puerto= 3000;
 
-// ejecuto mi servidor
-newApp.listen(puerto,()=>{
-    console.log('hola desde el servidro');
+
+// Rutas
+app.use('/',router);
+
+// escuchar al servidor 
+app.listen(puerto,()=>{
+    console.log('hello from the server');
+    
 })
