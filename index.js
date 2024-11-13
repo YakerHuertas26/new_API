@@ -1,5 +1,6 @@
 import express from 'express';
-import router from './routes/rutas.js';
+import clienteRouter from './src/routes/ClienteRoutes.js';
+import consultaRouter from './src/routes/consultasRoutes.js';
 
 // creo el servidor app
 const app= express();
@@ -9,8 +10,12 @@ const app= express();
 const puerto= 3000;
 
 
-// Rutas
-app.use('/',router);
+// Rutas cliente
+app.use(clienteRouter);
+
+// ruta de consulta
+
+app.use(consultaRouter)
 
 // escuchar al servidor 
 app.listen(puerto,()=>{

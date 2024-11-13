@@ -1,7 +1,5 @@
 import { createPool } from "mysql2/promise";
 
-
-
 const conexion= createPool({
 
     host:'localhost',
