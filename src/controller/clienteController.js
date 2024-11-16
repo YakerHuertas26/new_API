@@ -1,12 +1,16 @@
 import { conexiondb } from "../conf/dataBase.js"
 
-const getCliente= (req, res) => {res.send('hello fron the client')}
+const getCliente= async (req, res) => {
+    // obtener los datos del cliete
+    const [respuesta]= await conexiondb.query('SELECT * FROM employes');
+    res.json(respuesta)
+}
 
 const postCliente= async (req, res) => {
     // extraer los datos del bady
     const {name, salary}= req.body;
     // ++++PUEDES HACER VALIDACIONES POR LOS TIPOS DE DATOS +++
-    
+
     // añadir un registro de cliente y guardo solo las filas en una constante
     const [crearCliene]=await conexiondb.query('INSERT INTO employes (name,salary) values (?,?)',[name,salary]);
 
