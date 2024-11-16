@@ -1,7 +1,7 @@
-import { conexion } from "../conf/dataBase.js";
+import { conexiondb } from "../conf/dataBase.js";
 
 const pruebaBD= async (req,res)=>{
-    const [consulta]= await conexion.query('select 1+2 as result')
+    const [consulta]= await conexiondb.query('select 1+2 as result')
     res.json(consulta)
 }
 
