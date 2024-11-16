@@ -13,7 +13,7 @@ router.post('/cliente', postCliente)
 
 router.put('/cliente', putCliente )
 
-router.delete('/cliente', deleteCliente)
+router.delete('/cliente/:id', deleteCliente)
 
 
 export default router;

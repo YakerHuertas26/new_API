@@ -1,7 +1,6 @@
 import { query } from "express";
 import { conexiondb } from "../conf/dataBase.js"
-const n = '5'
-parseInt
+
 const getCliente= async (req, res) => {
     // obtener los datos del cliete
     const [respuesta]= await conexiondb.query('SELECT * FROM employes');
@@ -41,6 +40,12 @@ const postCliente= async (req, res) => {
 
 const putCliente= (req, res) => {res.send('edit a client')} 
 
-const deleteCliente= (req, res) => {res.send('delete a client')}
+const deleteCliente= async (req, res) => {
+    const {id}=req.params;
+    const [respusta]= await conexiondb.query('DELETE FROM employes WHERE id= ?', id)
+    respusta.affectedRows == 0 ? res.status(404).json({mensaje:'dato no encontrado'})
+    : 
+    res.sendStatus(204)
+}
 
 export {getCliente,postCliente,putCliente,deleteCliente,clienteID}
