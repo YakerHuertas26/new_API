@@ -13,7 +13,7 @@ const puerto= 3000;
 // middlewares para que entienda los tipo Json
 app.use(express.json());
 // Rutas cliente
-app.use(clienteRouter);
+app.use('/api',clienteRouter);
 
 // ruta de consulta
 app.use(consultaRouter)
