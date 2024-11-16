@@ -1,10 +1,13 @@
 import {Router} from 'express';
-import { deleteCliente, getCliente, postCliente, putCliente } from '../controller/clienteController.js';
+import { clienteID, deleteCliente, getCliente, postCliente, putCliente } from '../controller/clienteController.js';
 
 
 const router = Router();
 
 router.get('/cliente', getCliente)
+
+// cliente por id
+router.get('/cliente/:id', clienteID);
 
 router.post('/cliente', postCliente)
 

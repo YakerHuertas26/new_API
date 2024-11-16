@@ -1,9 +1,23 @@
+import { query } from "express";
 import { conexiondb } from "../conf/dataBase.js"
-
+const n = '5'
+parseInt
 const getCliente= async (req, res) => {
     // obtener los datos del cliete
     const [respuesta]= await conexiondb.query('SELECT * FROM employes');
     res.json(respuesta)
+}
+
+// cliente por id
+const clienteID= async(req,res)=>{
+    const {id}= req.params;
+    // const idCliente= Number(id) //tambien funciona sin transformar
+    // consuta
+    const [respuesta]= await conexiondb.query('SELECT * FROM employes WHERE id= ?', id)
+    respuesta.length?
+    res.json(respuesta[0])// [0] => solo devuelve un elemento, si devuelme más no le pongas 
+    :
+    res.status(404).json({message:'cliente no exite'})
 }
 
 const postCliente= async (req, res) => {
@@ -15,7 +29,7 @@ const postCliente= async (req, res) => {
     const [crearCliene]=await conexiondb.query('INSERT INTO employes (name,salary) values (?,?)',[name,salary]);
 
     // devuelvo ya los datos con el ID en formato json 
-    res.send({
+    res.json({
         id:crearCliene.insertId,
         name,
         salary
@@ -29,4 +43,4 @@ const putCliente= (req, res) => {res.send('edit a client')}
 
 const deleteCliente= (req, res) => {res.send('delete a client')}
 
-export {getCliente,postCliente,putCliente,deleteCliente}
+export {getCliente,postCliente,putCliente,deleteCliente,clienteID}
