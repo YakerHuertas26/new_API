@@ -38,7 +38,19 @@ const postCliente= async (req, res) => {
     
 }
 
-const putCliente= (req, res) => {res.send('edit a client')} 
+const putCliente= async (req, res) => {
+    // Obtener el ID
+        const {id}=req.params
+    // obtener los valores 
+    const {name,salary}=req.body
+    // consulta
+    const [resultado]=await conexiondb.query('UPDATE employes SET name= IFNULL(?,name), salary = IFNULL(?,salary) WHERE id= ?',[name,salary,id])
+    if (resultado.affectedRows==0){
+    res.status(404).json({message:'empleado no encontrado'})
+    }
+    // const [respuesta]=await conexiondb.query('select * from employes WHERE id= ?',[id])
+    res.json({message:'empleado editado correctamente'})
+} 
 
 const deleteCliente= async (req, res) => {
     const {id}=req.params;

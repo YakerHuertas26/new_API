@@ -4,14 +4,14 @@ import { clienteID, deleteCliente, getCliente, postCliente, putCliente } from '.
 
 const router = Router();
 
-router.get('/cliente', getCliente)
+router.get('/empleado', getCliente)
 
 // cliente por id
-router.get('/cliente/:id', clienteID);
+router.get('/empleado/:id', clienteID);
 
-router.post('/cliente', postCliente)
+router.post('/empleado', postCliente)
 
-router.put('/cliente', putCliente )
+router.patch('/empleado/:id', putCliente )
 
 router.delete('/cliente/:id', deleteCliente)
 
